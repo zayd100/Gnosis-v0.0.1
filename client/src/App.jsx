@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AdminDashboard from './pages/AdminDashboard';
 import WarmerDashboard from './pages/WarmerDashboard';
 import CloserDashboard from './pages/CloserDashboard';
-
+ // I thought of switching plain ones or using it here, but its just better this way. 
 function App() {
   const [role, setRole] = useState('admin');
 
