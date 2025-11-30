@@ -1,9 +1,22 @@
-git clone the repo to your system.
 
-cd to client
+# SentinelX v0.0.1
 
-npm install 
+### 1. Clone the repository
+git clone https://github.com/zayd100/SentinelX-v0.0.1.git
 
-and 
 
-npm run dev.
+2. Navigate into the project
+cd SentinelX-v0.0.1/client
+
+
+3. Install dependencies
+Make sure you have Node.js and npm installed.
+npm install
+
+
+4. Run the development server
+npm run dev
+
+
+This will start the project on a local development server.
+By default, you can access it at: http://localhost:5173/ 
