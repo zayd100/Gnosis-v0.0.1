@@ -5,7 +5,7 @@ import {
   Lock, Unlock, Phone 
 } from 'lucide-react';
 
-const SentinelXMissingComponents = () => {
+const AdminDashboard = () => {
   const [currentView, setCurrentView] = useState('closers');
 
   return (
@@ -602,4 +602,4 @@ const RolePermissions = () => {
     </div>
   );
 };
-export default SentinelXMissingComponents;
+export default AdminDashboard;

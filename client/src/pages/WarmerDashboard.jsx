@@ -16,7 +16,7 @@ const [stats, setStats] = useState({
   warm: 128,
   cold: 77
 });
-  // Mock data
+  // Mock data | change to utilis then change to the db. || Post writing the schema obviously. But in order for this to occur we have to make sure that we are getting enough users for feedback
   const leads = [
     { id: 1, name: 'Jordan P', status: 'Hot', intent: '--', responseSpeed: '--' },
     { id: 2, name: 'Alex M', status: 'Warm', intent: '--', responseSpeed: '--' },

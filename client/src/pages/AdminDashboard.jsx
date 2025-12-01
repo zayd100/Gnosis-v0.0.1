@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
 
   // === remove from each page || transfer in utils.===
-  
+  // change all the mockdata here to the utils so i know what i am talking about. This should know about what they are really on about
   const leadQueue = [
     { id: 1, tier: 1, score: 0.9, email: 'lead1@example.com', tier_label: 'W1', status: 'hot' },
     { id: 2, tier: 1, score: 0.58, email: 'lead2@example.com', tier_label: 'W5', status: 'hot' },
@@ -68,6 +68,7 @@ const AdminDashboard = () => {
     { id: 3, name: 'Ava', role: 'Warmer', tier: 'W1', score: 66, status: 'away', leads: 18 },
     { id: 4, name: 'Zoe', role: 'Closer', tier: 'C3', score: 103, status: 'online', conv: '38%' },
   ];
+  
 
   const integrations = [
     { name: 'GoHighLevel', connected: true, lastSync: '2 min ago' },
