@@ -27,6 +27,32 @@ exports.getUsers = async (req, res) => {
     });
   }
 };
+// @desc    Create new user
+// @route   POST /api/users
+// @access  Private (Admin only)
+exports.createUser = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({
+        success: false,
+        message: 'Only admins can create users'
+      });
+    }
+
+    const user = await User.create(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: user
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+
 
 // @desc    Get single user
 // @route   GET /api/users/:id

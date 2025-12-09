@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import { leadsAPI, usersAPI, analyticsAPI, tasksAPI, activitiesAPI } from '../api';
 import { 
   LayoutDashboard, Users, BarChart3, Activity, CheckSquare, 
-  Plug, Settings, LogOut, Moon, Sun, DollarSign, Zap, TrendingUp 
+  Plug, Settings, LogOut, Moon, Sun, DollarSign, Zap
 } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
@@ -291,12 +291,12 @@ const AdminDashboard = () => {
         {/* Page Content */}
         <div className="p-8">
           {currentPage === 'dashboard' && <DashboardPage />}
-          {currentPage === 'team' && <TeamManagementPage teamMembers={teamMembers} darkMode={darkMode} getTierBadge={getTierBadge} />}
-          {currentPage === 'analytics' && <AnalyticsPage darkMode={darkMode} />}
-          {currentPage === 'activity' && <ActivityLogPage activities={activities} darkMode={darkMode} />}
-          {currentPage === 'tasks' && <TasksPage tasks={tasks} darkMode={darkMode} />}
-          {currentPage === 'integrations' && <IntegrationsPage darkMode={darkMode} />}
-          {currentPage === 'settings' && <SettingsPage darkMode={darkMode} />}
+{currentPage === 'team' && <TeamManagementPage teamMembers={teamMembers} darkMode={darkMode} getTierBadge={getTierBadge} onDataUpdate={fetchAllData} />}
+{currentPage === 'analytics' && <AnalyticsPage darkMode={darkMode} />}
+{currentPage === 'activity' && <ActivityLogPage activities={activities} darkMode={darkMode} />}
+{currentPage === 'tasks' && <TasksPage tasks={tasks} darkMode={darkMode} onDataUpdate={fetchAllData} teamMembers={teamMembers} />}
+{currentPage === 'integrations' && <IntegrationsPage darkMode={darkMode} />}
+{currentPage === 'settings' && <SettingsPage darkMode={darkMode} />}
         </div>
       </div>
     </div>

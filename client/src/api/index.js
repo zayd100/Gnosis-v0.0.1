@@ -24,27 +24,25 @@ export const leadsAPI = {
 export const usersAPI = {
   getAll: (params) => api.get('/users', { params }),
   getOne: (id) => api.get(`/users/${id}`),
-  update: (id, data) => api.put(`/users/${id}`, data),
-  delete: (id) => api.delete(`/users/${id}`),
+  create: (data) => api.post('/users', data),           // FIXED
+  update: (id, data) => api.put(`/users/${id}`, data),  // FIXED
+  delete: (id) => api.delete(`/users/${id}`),           // FIXED
   getLeaderboard: () => api.get('/users/leaderboard')
 };
-
-// Tasks
 export const tasksAPI = {
-  getAll: (params) => api.get('/tasks', { params }),
-  getOne: (id) => api.get(`/tasks/${id}`),
+  getAll: () => api.get('/tasks'),
+  getById: (id) => api.get(`/tasks/${id}`),
   create: (data) => api.post('/tasks', data),
   update: (id, data) => api.put(`/tasks/${id}`, data),
   delete: (id) => api.delete(`/tasks/${id}`)
 };
 
-// Activities
-export const activitiesAPI = {
-  getAll: (params) => api.get('/activities', { params }),
-  create: (data) => api.post('/activities', data),
-  getRecent: (limit) => api.get('/activities/recent', { params: { limit } })
-};
+// Also make sure activitiesAPI exists:
 
+export const activitiesAPI = {
+  getAll: () => api.get('/activities'),
+  getById: (id) => api.get(`/activities/${id}`)
+};
 // Analytics
 export const analyticsAPI = {
   getDashboard: () => api.get('/analytics/dashboard'),

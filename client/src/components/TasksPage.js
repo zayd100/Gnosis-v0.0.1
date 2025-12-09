@@ -1,23 +1,55 @@
 import React, { useState } from 'react';
 import { Plus, Calendar, User, Flag, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { tasksAPI } from '../api';
 
-const TasksPage = ({ tasks, darkMode }) => {
+const TasksPage = ({ tasks, darkMode, onDataUpdate, teamMembers }) => {
   const [showNewTaskForm, setShowNewTaskForm] = useState(false);
   const [newTask, setNewTask] = useState({
     title: '',
+    description: '',
     priority: 'medium',
     assignee: '',
     dueDate: ''
   });
 
-  const handleCreateTask = () => {
-    alert('Create task - Connect to API: tasksAPI.create(newTask)');
-    setShowNewTaskForm(false);
-    setNewTask({ title: '', priority: 'medium', assignee: '', dueDate: '' });
+  const handleCreateTask = async () => {
+    if (!newTask.title) {
+      alert('Please enter a task title');
+      return;
+    }
+
+    try {
+      // Prepare data - remove empty fields
+      const taskData = { ...newTask };
+      if (!taskData.assignee || taskData.assignee === '') {
+        delete taskData.assignee;
+      }
+      if (!taskData.dueDate || taskData.dueDate === '') {
+        delete taskData.dueDate;
+      }
+      if (!taskData.description || taskData.description === '') {
+        delete taskData.description;
+      }
+
+      await tasksAPI.create(taskData);
+      alert('Task created successfully!');
+      setShowNewTaskForm(false);
+      setNewTask({ title: '', description: '', priority: 'medium', assignee: '', dueDate: '' });
+      if (onDataUpdate) onDataUpdate();
+    } catch (error) {
+      console.error('Error creating task:', error);
+      alert(error.response?.data?.message || 'Failed to create task');
+    }
   };
 
-  const handleMoveTask = (taskId, newStatus) => {
-    alert(`Move task to ${newStatus} - Connect to API: tasksAPI.update(taskId, {status: '${newStatus}'})`);
+  const handleMoveTask = async (taskId, newStatus) => {
+    try {
+      await tasksAPI.update(taskId, { status: newStatus });
+      if (onDataUpdate) onDataUpdate();
+    } catch (error) {
+      console.error('Error updating task:', error);
+      alert(error.response?.data?.message || 'Failed to update task');
+    }
   };
 
   const getPriorityColor = (priority) => {
@@ -38,9 +70,19 @@ const TasksPage = ({ tasks, darkMode }) => {
     }
   };
 
+  // Get assignee name
+  const getAssigneeName = (task) => {
+    if (!task.assignee) return 'Unassigned';
+    if (typeof task.assignee === 'string') return task.assignee;
+    return task.assignee.name || 'Unknown';
+  };
+
   const pendingTasks = tasks.filter(t => t.status === 'pending');
   const inProgressTasks = tasks.filter(t => t.status === 'in_progress');
   const completedTasks = tasks.filter(t => t.status === 'completed');
+
+  // Filter team members (exclude admins)
+  const availableMembers = teamMembers ? teamMembers.filter(m => m.role !== 'admin') : [];
 
   const TaskCard = ({ task }) => (
     <div className={`${darkMode ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200'} rounded-xl border-2 p-4 hover:shadow-md transition-all`}>
@@ -58,7 +100,7 @@ const TasksPage = ({ tasks, darkMode }) => {
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-sm">
           <User size={14} className="text-gray-400" />
-          <span className="text-gray-600">{task.assignee?.name || 'Unassigned'}</span>
+          <span className="text-gray-600">{getAssigneeName(task)}</span>
         </div>
         
         {task.dueDate && (
@@ -140,43 +182,75 @@ const TasksPage = ({ tasks, darkMode }) => {
             Create New Task
           </h3>
           <div className="space-y-4">
-            <input
-              type="text"
-              value={newTask.title}
-              onChange={(e) => setNewTask({...newTask, title: e.target.value})}
-              placeholder="Task title..."
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-            <div className="grid grid-cols-3 gap-4">
-              <select
-                value={newTask.priority}
-                onChange={(e) => setNewTask({...newTask, priority: e.target.value})}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-                <option value="low">Low</option>
-                <option value="medium">Medium</option>
-                <option value="high">High</option>
-              </select>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Task Title *</label>
               <input
                 type="text"
-                value={newTask.assignee}
-                onChange={(e) => setNewTask({...newTask, assignee: e.target.value})}
-                placeholder="Assign to..."
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-              />
-              <input
-                type="date"
-                value={newTask.dueDate}
-                onChange={(e) => setNewTask({...newTask, dueDate: e.target.value})}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                value={newTask.title}
+                onChange={(e) => setNewTask({...newTask, title: e.target.value})}
+                placeholder="Enter task title..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Description (optional)</label>
+              <textarea
+                value={newTask.description}
+                onChange={(e) => setNewTask({...newTask, description: e.target.value})}
+                placeholder="Add task details..."
+                rows={3}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Priority *</label>
+                <select
+                  value={newTask.priority}
+                  onChange={(e) => setNewTask({...newTask, priority: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Assign To</label>
+                <select
+                  value={newTask.assignee}
+                  onChange={(e) => setNewTask({...newTask, assignee: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                >
+                  <option value="">Unassigned</option>
+                  {availableMembers.map(member => (
+                    <option key={member._id} value={member._id}>
+                      {member.name} ({member.role})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Due Date</label>
+                <input
+                  type="date"
+                  value={newTask.dueDate}
+                  onChange={(e) => setNewTask({...newTask, dueDate: e.target.value})}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+              </div>
+            </div>
+
             <div className="flex gap-3">
               <button
                 onClick={handleCreateTask}
                 className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium"
               >
-                Create
+                Create Task
               </button>
               <button
                 onClick={() => setShowNewTaskForm(false)}

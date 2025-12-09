@@ -5,14 +5,16 @@ const {
   getUser,
   updateUser,
   deleteUser,
-  getLeaderboard
+  getLeaderboard,
+  createUser   
 } = require('../controllers/userController');
 const { protect, authorize } = require('../middleware/auth');
 
 router.get('/leaderboard', protect, getLeaderboard);
 
 router.route('/')
-  .get(protect, authorize('admin'), getUsers);
+  .get(protect, authorize('admin'), getUsers)
+  .post(protect, authorize('admin'), createUser);
 
 router.route('/:id')
   .get(protect, getUser)

@@ -1,0 +1,1 @@
+Ok so now we have to take a look at the deployment of the software and how can the mvp actually scale to multiple domains within the context of this all we are going to be making sure that our software is going to be a better amd stronger version of the mvp.
