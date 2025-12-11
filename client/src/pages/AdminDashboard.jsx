@@ -232,7 +232,7 @@ const AdminDashboard = () => {
       <div className={`fixed left-0 top-0 h-full w-64 ${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'} border-r`}>
         <div className="p-6">
           <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
-            SentinelX
+            NoetisAI
           </h1>
           <p className="text-sm text-gray-500 mt-1">Admin Dashboard</p>
         </div>

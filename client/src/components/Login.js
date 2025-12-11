@@ -65,7 +65,7 @@ const Login = () => {
   />
 
   {/* Title */}
-  <h1 className="text-4xl font-bold text-white mb-2">SentinelX</h1>
+  <h1 className="text-4xl font-bold text-white mb-2">NoetisAI</h1>
 
   {/* Subtitle */}
   <p className="text-purple-200">AI Lead Management System</p>
@@ -150,7 +150,7 @@ const Login = () => {
 
         {/* Footer */}
         <p className="text-center text-purple-200 text-sm mt-8">
-          © 2026 SentinelX. All rights reserved.
+          © 2026 NoetisAI. All rights reserved.
         </p>
       </div>
     </div>
