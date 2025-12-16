@@ -11,7 +11,7 @@ A multi-role SaaS platform for intelligent lead routing and sales team managemen
 - **Task Management**: Organized workflow for team collaboration
 - **Integration Ready**: API endpoints for CRM and automation tools
 
-## 📁 Project Structure
+## 📁 Project Structure..
 
 ```
 sentinelx/
