@@ -65,10 +65,10 @@ const Login = () => {
   />
 
   {/* Title */}
-  <h1 className="text-4xl font-bold text-white mb-2">NoetisAI</h1>
+  <h1 className="text-4xl font-bold text-white mb-2">Gnosis</h1>
 
   {/* Subtitle */}
-  <p className="text-purple-200">AI Lead Management System</p>
+  <p className="text-purple-200">Lead Management System</p>
 </div>
 
 
