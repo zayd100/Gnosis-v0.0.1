@@ -12,5 +12,4 @@ router.route('/')
   .post(protect, createActivity);
 
 router.get('/recent', protect, getRecentActivities);
-
 module.exports = router;

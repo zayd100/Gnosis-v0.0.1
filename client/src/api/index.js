@@ -1,6 +1,6 @@
 import api from './axios';
 
-// Authentication
+// Authentication, using Auth API
 export const authAPI = {
   login: (credentials) => api.post('/auth/login', credentials),
   register: (userData) => api.post('/auth/register', userData),
@@ -42,6 +42,7 @@ export const tasksAPI = {
 export const activitiesAPI = {
   getAll: () => api.get('/activities'),
   getById: (id) => api.get(`/activities/${id}`)
+
 };
 // Analytics
 export const analyticsAPI = {
