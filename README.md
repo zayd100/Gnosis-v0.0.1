@@ -237,6 +237,6 @@ This project is licensed under the MIT License.
 
 ## Support
 
-For issues and questions, please open a GitHub issue.
+For issues and questions, please open a GitHub issue..
 
 ---
