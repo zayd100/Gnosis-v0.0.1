@@ -2,7 +2,7 @@
 
 A multi-role SaaS platform for intelligent lead routing and sales team management.
 
-## 🚀 Features
+## Features
 
 - **Role-Based Dashboards**: Admin, Warmer, and Closer views
 - **AI Lead Routing**: Intelligent assignment based on tier, score, and team performance
@@ -11,7 +11,7 @@ A multi-role SaaS platform for intelligent lead routing and sales team managemen
 - **Task Management**: Organized workflow for team collaboration
 - **Integration Ready**: API endpoints for CRM and automation tools
 
-## 📁 Project Structure..
+##  Project Structure..
 
 ```
 sentinelx/
@@ -20,7 +20,7 @@ sentinelx/
 └── README.md
 ```
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Backend
 - Node.js + Express
@@ -35,7 +35,7 @@ sentinelx/
 - Lucide React for icons
 - Axios for API calls
 
-## ⚙️ Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites
 - Node.js (v16 or higher)
@@ -99,7 +99,7 @@ npm start
 
 Frontend will run on `http://localhost:3000`
 
-## 🔐 Default Login Credentials
+##  Default Login Credentials
 
 After running the seed script, use these credentials:
 
@@ -115,7 +115,7 @@ After running the seed script, use these credentials:
 - Email: ivy@sentinelx.com
 - Password: closer123
 
-## 📊 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - Register new user
@@ -152,7 +152,7 @@ After running the seed script, use these credentials:
 - `GET /api/analytics/performance` - Performance metrics
 - `GET /api/analytics/leaderboard` - Top performers
 
-## 🔒 Role Permissions
+##  Role Permissions
 
 ### Admin
 - Full access to all features
@@ -174,7 +174,7 @@ After running the seed script, use these credentials:
 - Close deals
 - View personal metrics
 
-## 🧪 Development
+##  Development
 
 ### Running Tests
 ```bash
@@ -193,7 +193,7 @@ cd backend
 npm run seed
 ```
 
-## 📝 Environment Variables
+##  Environment Variables
 
 ### Backend
 - `PORT` - Server port (default: 5000)
@@ -205,7 +205,7 @@ npm run seed
 ### Frontend
 - `REACT_APP_API_URL` - Backend API URL
 
-## 🚢 Deployment
+##  Deployment
 
 ### Backend Deployment (Heroku/Railway/Render)
 1. Set environment variables
@@ -217,7 +217,7 @@ npm run seed
 2. Set `REACT_APP_API_URL` to production backend URL
 3. Deploy
 
-## 🤝 Contributing
+##  Contributing
 
 1. Fork the repository
 2. Create feature branch (`git checkout -b feature/AmazingFeature`)
@@ -225,20 +225,18 @@ npm run seed
 4. Push to branch (`git push origin feature/AmazingFeature`)
 5. Open Pull Request
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License.
 
-## 🐛 Known Issues
+##  Known Issues
 
 - Dark mode preference not persisted across sessions (coming soon)
 - Real-time WebSocket updates not yet implemented
 - Integration webhooks in development
 
-## 📞 Support
+## Support
 
 For issues and questions, please open a GitHub issue.
 
 ---
-
-Built with ❤️ by the SentinelX Team
