@@ -1,4 +1,4 @@
-# SentinelX - AI Lead Management System
+# SentinelX - Lead Distribution & Team Collaboration Platform
 
 A multi-role SaaS platform for intelligent lead routing and sales team management.
 
