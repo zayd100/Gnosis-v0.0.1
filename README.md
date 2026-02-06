@@ -14,9 +14,9 @@ A multi-role SaaS platform for intelligent lead routing and sales team managemen
 ##  Project Structure..
 
 ```
-sentinelx/
-├── backend/          # Node.js + Express + MongoDB
-├── frontend/         # React + Tailwind CSS
+gnosis/
+├── server/          # Node.js + Express + MongoDB
+├── client/         # React + Tailwind CSS
 └── README.md
 ```
 
@@ -46,7 +46,7 @@ sentinelx/
 
 1. Navigate to backend directory:
 ```bash
-cd backend
+cd server
 ```
 
 2. Install dependencies:
@@ -70,7 +70,7 @@ NODE_ENV=development
 
 5. Start the backend server:
 ```bash
-npm run dev
+npm start
 ```
 
 Backend will run on `http://localhost:5000`
@@ -79,7 +79,7 @@ Backend will run on `http://localhost:5000`
 
 1. Navigate to frontend directory:
 ```bash
-cd frontend
+cd client
 ```
 
 2. Install dependencies:
